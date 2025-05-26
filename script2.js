@@ -15,33 +15,35 @@ function validar(){
     valorEdad = elementoEdad.value.trim()
     errorEdad = document.getElementById("errorEdad")
 
-    validarNombre = validarTexto(elementoNombre, valorNombre, errores)
-    validarEdadd = validarEdad(elementoEdad, valorEdad, errores)
+    if(valorNombre.length < 0){
+        elementoNombre.style.backgroundColor = "red"
+        elementoNombre.style.color = "white"
+        errores.textContent = "El nombre no debe estar vacio"
+
+        return;
     let dato ={
             nombre: valorNombre,
             edad: valorEdad,
-        };
-    if(validarNombre && validarEdadd){
- 
-        if(enEdicion !== null){
-            datos[enEdicion] = dato;
-            enEdicion = null;
-            document.getElementById("btn").textContent = "Enviar"
+    };
+    
+    if(enEdicion !== null){
+        datos[enEdicion] = dato;
+        enEdicion = null;
+        document.getElementById("btn").textContent = "Enviar"
 
-        }
-           
+    }else{
+        datos.push(dato)
     }
-    datos.push(dato)
+    document.getElementById("miFormulario").reset()
+    errores.textContent = ""
     cargarDatos()
+    
+
 }
 function validarTexto(elemento, valor, error){
 
     if(valor.length < 0 ){
-        elemento.style.backgroundColor = "red"
-        elemento.style.color = "white"
-        error.textContent = "El nombre no debe estar vacio"
-
-        return false
+        elemento
     }
     else{
         elemento.style.backgroundColor = "green"
@@ -83,7 +85,7 @@ function cargarDatos(){
 
 }
 
-function editar(index){
+function actualizar(index){
     let 
 }
 
