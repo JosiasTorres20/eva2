@@ -86,3 +86,8 @@ function cargarDatos(){
 function editar(index){
     let 
 }
+
+function eliminar(index){
+    datos.splice(index, 1)
+    cargarDatos()
+}
