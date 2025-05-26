@@ -1,7 +1,7 @@
 //validar nombre, debe contener solo letras y no ser vacio
 //validar edad: Debe ser mayor o igual a 18 y menor a 100
 
-let datos= [];
+let datos = [];
 let enEdicion = null
 
 
@@ -17,7 +17,22 @@ function validar(){
 
     validarNombre = validarTexto(elementoNombre, valorNombre, errores)
     validarEdadd = validarEdad(elementoEdad, valorEdad, errores)
+    let dato ={
+            nombre: valorNombre,
+            edad: valorEdad,
+        };
+    if(validarNombre && validarEdadd){
+ 
+        if(enEdicion !== null){
+            datos[enEdicion] = dato;
+            enEdicion = null;
+            document.getElementById("btn").textContent = "Enviar"
 
+        }
+           
+    }
+    datos.push(dato)
+    cargarDatos()
 }
 function validarTexto(elemento, valor, error){
 
@@ -28,13 +43,6 @@ function validarTexto(elemento, valor, error){
 
         return false
     }
-    if(!soloTexto(valor)){
-        elemento.style.backgroundColor = "red"
-        elemento.style.color = "white"
-        error.textContent = "El nombre debe contener solo texto"
-
-        return false
-    }
     else{
         elemento.style.backgroundColor = "green"
         elemento.style.color = "white"
@@ -42,10 +50,12 @@ function validarTexto(elemento, valor, error){
 
         return true
     }
+
+
 }
 
 function validarEdad(elemento, valor, error){
-    if (isNaN(valor) || valor < 18 || valor > 100){
+    if (valor < 18 || valor > 100){
         elemento.style.backgroundColor = "red"
         elemento.style.color = "white"
         error.textContent = "Ingrese una edad debe ser mayor de 18 y menor de 100 "
@@ -57,11 +67,8 @@ function validarEdad(elemento, valor, error){
         return false
     }
 }
-function soloTexto(valor){
-    let regex = /[A-Za-z]/;
-    return regex.test(valor)
-}
-function cagarDatos(){
+
+function cargarDatos(){
     let cuerpoTabla = document.getElementById("cuerpoTabla")
     cuerpoTabla.innerHTML = ""
     datos.forEach((dato, index) =>{
@@ -73,4 +80,9 @@ function cagarDatos(){
                 <button type="submit" onclick="eliminar(${index})">Eliminar</button></td>
             </tr>`
     })
+
+}
+
+function editar(index){
+    let 
 }
